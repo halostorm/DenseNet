@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import os.path
 
-import densenet
 import numpy as np
 import sklearn.metrics as metrics
 
@@ -13,7 +12,9 @@ from keras.optimizers import Adam
 from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 from keras import backend as K
 
-batch_size = 100
+import densenet
+
+batch_size = 20
 nb_classes = 10
 nb_epoch = 300
 
@@ -25,19 +26,24 @@ depth = 40
 nb_dense_block = 3
 growth_rate = 12
 nb_filter = -1
-dropout_rate = 0.0 # 0.0 for data augmentation
+dropout_rate = 0.0  # 0.0 for data augmentation
 
 model = densenet.DenseNet(img_dim, classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
                           growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate, weights=None)
 print("Model created")
 
 model.summary()
-optimizer = Adam(lr=1e-3) # Using Adam instead of SGD to speed up training
+optimizer = Adam(lr=1e-3)  # Using Adam instead of SGD to speed up training
 model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=["accuracy"])
 print("Finished compiling")
 print("Building model...")
 
 (trainX, trainY), (testX, testY) = cifar10.load_data()
+
+print(trainX.shape)
+print(trainY.shape)
+print(testX.shape)
+print(testY.shape)
 
 trainX = trainX.astype('float32')
 testX = testX.astype('float32')
@@ -49,26 +55,26 @@ Y_train = np_utils.to_categorical(trainY, nb_classes)
 Y_test = np_utils.to_categorical(testY, nb_classes)
 
 generator = ImageDataGenerator(rotation_range=15,
-                               width_shift_range=5./32,
-                               height_shift_range=5./32,
+                               width_shift_range=5. / 32,
+                               height_shift_range=5. / 32,
                                horizontal_flip=True)
 
 generator.fit(trainX, seed=0)
 
 # Load model
-weights_file="weights/DenseNet-40-12-CIFAR10.h5"
+weights_file = "weights/DenseNet-40-12-CIFAR10.h5"
 if os.path.exists(weights_file):
-    #model.load_weights(weights_file, by_name=True)
+    # model.load_weights(weights_file, by_name=True)
     print("Model loaded.")
 
-out_dir="weights/"
+out_dir = "weights/"
 
-lr_reducer      = ReduceLROnPlateau(monitor='val_acc', factor=np.sqrt(0.1),
-                                    cooldown=0, patience=5, min_lr=1e-5)
-model_checkpoint= ModelCheckpoint(weights_file, monitor="val_acc", save_best_only=True,
-                                  save_weights_only=True, verbose=1)
+lr_reducer = ReduceLROnPlateau(monitor='val_acc', factor=np.sqrt(0.1),
+                               cooldown=0, patience=5, min_lr=1e-5)
+model_checkpoint = ModelCheckpoint(weights_file, monitor="val_acc", save_best_only=True,
+                                   save_weights_only=True, verbose=1)
 
-callbacks=[lr_reducer, model_checkpoint]
+callbacks = [lr_reducer, model_checkpoint]
 
 model.fit_generator(generator.flow(trainX, Y_train, batch_size=batch_size),
                     steps_per_epoch=len(trainX) // batch_size, epochs=nb_epoch,
@@ -84,4 +90,5 @@ accuracy = metrics.accuracy_score(yTrue, yPred) * 100
 error = 100 - accuracy
 print("Accuracy : ", accuracy)
 print("Error : ", error)
+
 
