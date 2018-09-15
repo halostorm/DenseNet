@@ -46,7 +46,6 @@ img_rows, img_cols = 64, 64
 img_channels = 3
 
 
-
 def args_parse():
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
@@ -62,14 +61,14 @@ def args_parse():
     return args
 
 
-def load_data(dir,path):
+def load_data(dir, path):
     print("[INFO] loading images...")
     data = []
     labels = []
 
     filelist = []
     # grab the image paths and randomly shuffle them
-    with open(path,'r') as f:
+    with open(path, 'r') as f:
         for line in f.readline():
             filelist.append(line.split('\t'))
 
@@ -80,7 +79,7 @@ def load_data(dir,path):
     # loop over the input images
     for file in filelist:
         # load the image, pre-process it, and store it in the data list
-        imagePath = dir+file[0]
+        imagePath = dir + file[0]
         image = cv2.imread(imagePath)
         image = cv2.resize(image, (norm_size, norm_size))
         image = img_to_array(image)
@@ -136,20 +135,21 @@ def train(aug, trainX, trainY, testX, testY, args):
     plt.legend(loc="lower left")
     plt.savefig(args["plot"])
 
-    if __name__ == '__main__':
-        # args = args_parse()
-        # train_file_path = args["dataset_train"]
-        # test_file_path = args["dataset_test"]
 
-        train_file_path = r'../DatasetA_train_20180813/train/'
-        test_file_path = r'../DatasetA_train_20180813/train/'
-        com_path = r'../data/com.txt'
+if __name__ == '__main__':
+    # args = args_parse()
+    # train_file_path = args["dataset_train"]
+    # test_file_path = args["dataset_test"]
 
-        trainX, trainY = load_data(train_file_path,com_path)
-        # testX, testY = load_data(test_file_path,com_path)
+    train_file_path = r'../DatasetA_train_20180813/train/'
+    test_file_path = r'../DatasetA_train_20180813/train/'
+    com_path = r'../data/com.txt'
 
-        # construct the image generator for data augmentation
-        aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
-                                 height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
-                                 horizontal_flip=True, fill_mode="nearest")
-        # train(aug, trainX, trainY, testX, testY, args)
+    trainX, trainY = load_data(train_file_path, com_path)
+    # testX, testY = load_data(test_file_path,com_path)
+
+    # construct the image generator for data augmentation
+    aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
+                             height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
+                             horizontal_flip=True, fill_mode="nearest")
+    # train(aug, trainX, trainY, testX, testY, args)
