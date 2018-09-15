@@ -70,6 +70,7 @@ def load_data(dir, path):
     # grab the image paths and randomly shuffle them
     with open(path, 'r') as f:
         for line in f.readline():
+            print(line)
             filelist.append(line.split('\t'))
 
     # imagePaths = sorted(list(paths.list_images(path)))
