@@ -79,6 +79,7 @@ def load_data(dir, path):
     # loop over the input images
     for file in filelist:
         # load the image, pre-process it, and store it in the data list
+        print(file)
         imagePath = dir + file[0]
         print(imagePath)
         image = cv2.imread(imagePath)
