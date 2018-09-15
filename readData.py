@@ -80,6 +80,7 @@ def load_data(dir, path):
     for file in filelist:
         # load the image, pre-process it, and store it in the data list
         imagePath = dir + file[0]
+        print(imagePath)
         image = cv2.imread(imagePath)
         image = cv2.resize(image, (norm_size, norm_size))
         image = img_to_array(image)
