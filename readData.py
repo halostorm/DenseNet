@@ -70,7 +70,7 @@ def load_data(dir, path):
     # grab the image paths and randomly shuffle them
     with open(path, 'r') as f:
         for line in f:
-            print(line)
+            # print(line)
             filelist.append(line.split('\t'))
 
     # imagePaths = sorted(list(paths.list_images(path)))
@@ -80,9 +80,9 @@ def load_data(dir, path):
     # loop over the input images
     for file in filelist:
         # load the image, pre-process it, and store it in the data list
-        print(file)
+        # print(file)
         imagePath = dir + file[0]
-        print(imagePath)
+        # print(imagePath)
         image = cv2.imread(imagePath)
         image = cv2.resize(image, (norm_size, norm_size))
         image = img_to_array(image)
