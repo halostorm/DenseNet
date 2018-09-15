@@ -18,6 +18,8 @@ import cv2
 import os
 import sys
 
+sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+
 sys.path.append('..')
 
 import densenet
@@ -42,6 +44,7 @@ nb_filter = -1
 dropout_rate = 0.0  # 0.0 for data augmentation
 img_rows, img_cols = 64, 64
 img_channels = 3
+
 
 
 def args_parse():
@@ -143,9 +146,10 @@ def train(aug, trainX, trainY, testX, testY, args):
         com_path = r'../data/com.txt'
 
         trainX, trainY = load_data(train_file_path,com_path)
-        testX, testY = load_data(test_file_path,com_path)
+        # testX, testY = load_data(test_file_path,com_path)
+
         # construct the image generator for data augmentation
         aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
                                  height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
                                  horizontal_flip=True, fill_mode="nearest")
-        train(aug, trainX, trainY, testX, testY, args)
+        # train(aug, trainX, trainY, testX, testY, args)
