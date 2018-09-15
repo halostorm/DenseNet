@@ -9,7 +9,7 @@ from keras.optimizers import Adam
 from sklearn.model_selection import train_test_split
 from keras.preprocessing.image import img_to_array
 from keras.utils import to_categorical
-from imutils import paths
+# from imutils import paths
 import matplotlib.pyplot as plt
 import numpy as np
 import argparse
