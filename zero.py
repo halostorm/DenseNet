@@ -4,6 +4,7 @@ import os.path
 
 import numpy as np
 import sklearn.metrics as metrics
+from keras import losses
 
 from keras.datasets import cifar10
 
@@ -21,6 +22,7 @@ import os
 import sys
 
 import densenet
+from densenet_fast import create_dense_net
 
 norm_size = 64
 train_file_path = r'../DatasetA_train_20180813/train/'
@@ -67,11 +69,13 @@ def load_data(dir, path):
         else:
             data1.append(image)
             labels1.append(label)
+        count += 1
 
     # scale the raw pixel intensities to the range [0, 1]
     data = np.array(data, dtype="float") / 255.0
     data1 = np.array(data1, dtype="float") / 255.0
-    # labels = np.array(labels)
+    labels = np.array(labels)
+    labels1 = np.array(labels1)
 
     # convert the labels from integers to vectors
     # labels = to_categorical(labels, num_classes=CLASS_NUM)
@@ -87,20 +91,20 @@ def train():
     img_channels = 3
 
     img_dim = (img_channels, img_rows, img_cols) if K.image_dim_ordering() == "th" else (
-    img_rows, img_cols, img_channels)
+        img_rows, img_cols, img_channels)
     depth = 40
     nb_dense_block = 3
     growth_rate = 12
     nb_filter = -1
     dropout_rate = 0.0  # 0.0 for data augmentation
 
-    model = densenet.DenseNet(img_dim, classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
-                              growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate, weights=None)
+    model = create_dense_net(img_dim=img_dim, nb_classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
+                             growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate)
     print("Model created")
 
     model.summary()
     optimizer = Adam(lr=1e-3)  # Using Adam instead of SGD to speed up training
-    model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=["accuracy"])
+    model.compile(loss=losses.mean_squared_error, optimizer=optimizer, metrics=["accuracy"])
     print("Finished compiling")
     print("Building model...")
 
