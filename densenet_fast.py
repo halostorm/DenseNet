@@ -136,7 +136,7 @@ def create_dense_net(nb_classes, img_dim, depth=40, nb_dense_block=3, growth_rat
 
     x = Activation('relu')(x)
     x = GlobalAveragePooling2D()(x)
-    x = Dense(nb_classes, activation='softmax', W_regularizer=l2(weight_decay), b_regularizer=l2(weight_decay))(x)
+    x = Dense(nb_classes, activation='linear', W_regularizer=l2(weight_decay), b_regularizer=l2(weight_decay))(x)
 
     densenet = Model(input=model_input, output=x, name="create_dense_net")
 

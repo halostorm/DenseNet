@@ -109,9 +109,9 @@ def train():
     trainX, trainY, testX, testY = load_data(train_file_path, com_path)
 
     print(trainX.shape)
-    print(trainY.shape)
+    # print(trainY.shape)
     print(testX.shape)
-    print(testY.shape)
+    # print(testY.shape)
 
     trainX = trainX.astype('float32')
     testX = testX.astype('float32')
