@@ -116,8 +116,8 @@ def train():
     trainX = trainX.astype('float32')
     testX = testX.astype('float32')
 
-    trainX = densenet.preprocess_input(trainX)
-    testX = densenet.preprocess_input(testX)
+    # trainX = densenet.preprocess_input(trainX)
+    # testX = densenet.preprocess_input(testX)
 
     Y_train = np_utils.to_categorical(trainY, nb_classes)
     Y_test = np_utils.to_categorical(testY, nb_classes)
