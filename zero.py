@@ -119,8 +119,8 @@ def train():
     # trainX = densenet.preprocess_input(trainX)
     # testX = densenet.preprocess_input(testX)
 
-    Y_train = np_utils.to_categorical(trainY, nb_classes)
-    Y_test = np_utils.to_categorical(testY, nb_classes)
+    # Y_train = np_utils.to_categorical(trainY, nb_classes)
+    # Y_test = np_utils.to_categorical(testY, nb_classes)
 
     generator = ImageDataGenerator(rotation_range=15,
                                    width_shift_range=5. / img_rows,
@@ -144,10 +144,10 @@ def train():
 
     callbacks = [lr_reducer, model_checkpoint]
 
-    model.fit_generator(generator.flow(trainX, Y_train, batch_size=batch_size),
+    model.fit_generator(generator.flow(trainX, None, batch_size=batch_size),
                         steps_per_epoch=len(trainX) // batch_size, epochs=nb_epoch,
                         callbacks=callbacks,
-                        validation_data=(testX, Y_test),
+                        validation_data=(testX, None),
                         validation_steps=testX.shape[0] // batch_size, verbose=1)
 
     yPreds = model.predict(testX)
