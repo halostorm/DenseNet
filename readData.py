@@ -49,10 +49,10 @@ img_channels = 3
 def args_parse():
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
-    ap.add_argument("-dtest", "--dataset_test", required=True,
-                    help="path to input dataset_test")
-    ap.add_argument("-dtrain", "--dataset_train", required=True,
-                    help="path to input dataset_train")
+    # ap.add_argument("-dtest", "--dataset_test", required=True,
+    #                 help="path to input dataset_test")
+    # ap.add_argument("-dtrain", "--dataset_train", required=True,
+    #                 help="path to input dataset_train")
     ap.add_argument("-m", "--model", required=True,
                     help="path to output model")
     ap.add_argument("-p", "--plot", type=str, default="plot.png",
@@ -66,6 +66,9 @@ def load_data(dir, path):
     data = []
     labels = []
 
+    data1 = []
+    labels1 = []
+
     filelist = []
     # grab the image paths and randomly shuffle them
     with open(path, 'r') as f:
@@ -78,29 +81,35 @@ def load_data(dir, path):
     random.seed(42)
     random.shuffle(filelist)
     # loop over the input images
+    count = 0
     for file in filelist:
         # load the image, pre-process it, and store it in the data list
         # print(file)
+
         imagePath = dir + file[0]
         # print(imagePath)
         image = cv2.imread(imagePath)
         image = cv2.resize(image, (norm_size, norm_size))
         image = img_to_array(image)
-        data.append(image)
-
         # extract the class label from the image path and update the
         # labels list
         label = file[1:31]
         label = np.array(label)
-        labels.append(label)
+        if count < 30000:
+            data.append(image)
+            labels.append(label)
+        else:
+            data1.append(image)
+            labels1.append(label)
 
     # scale the raw pixel intensities to the range [0, 1]
     data = np.array(data, dtype="float") / 255.0
+    data1 = np.array(data1, dtype="float") / 255.0
     # labels = np.array(labels)
 
     # convert the labels from integers to vectors
     # labels = to_categorical(labels, num_classes=CLASS_NUM)
-    return data, labels
+    return data, labels, data1, labels1
 
 
 def train(aug, trainX, trainY, testX, testY, args):
@@ -139,20 +148,24 @@ def train(aug, trainX, trainY, testX, testY, args):
     plt.savefig(args["plot"])
 
 
+def test():
+    print(test())
+
+
 if __name__ == '__main__':
-    # args = args_parse()
+    args = args_parse()
     # train_file_path = args["dataset_train"]
     # test_file_path = args["dataset_test"]
 
     train_file_path = r'../DatasetA_train_20180813/train/'
-    test_file_path = r'../DatasetA_train_20180813/train/'
+    # test_file_path = r'../DatasetA_train_20180813/train/'
     com_path = r'../data/com.txt'
 
-    trainX, trainY = load_data(train_file_path, com_path)
+    trainX, trainY, testX, testY = load_data(train_file_path, com_path)
     # testX, testY = load_data(test_file_path,com_path)
 
     # construct the image generator for data augmentation
     aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
                              height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
                              horizontal_flip=True, fill_mode="nearest")
-    # train(aug, trainX, trainY, testX, testY, args)
+    train(aug, trainX, trainY, testX, testY, args)
