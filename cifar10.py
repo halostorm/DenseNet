@@ -16,7 +16,7 @@ import densenet
 
 batch_size = 20
 nb_classes = 10
-nb_epoch = 300
+nb_epoch = 30
 
 img_rows, img_cols = 32, 32
 img_channels = 3
