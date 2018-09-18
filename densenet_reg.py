@@ -79,7 +79,7 @@ def preprocess_input(x, data_format=None):
 def DenseNet(input_shape=None, depth=40, nb_dense_block=3, growth_rate=12, nb_filter=-1, nb_layers_per_block=-1,
              bottleneck=False, reduction=0.0, dropout_rate=0.0, weight_decay=1e-4, subsample_initial_block=False,
              include_top=True, weights=None, input_tensor=None,
-             classes=10, activation='linear'):
+             classes=10, activation='softmax'):
     '''Instantiate the DenseNet architecture,
         optionally loading weights pre-trained
         on CIFAR-10. Note that when using TensorFlow,
@@ -423,7 +423,7 @@ def DenseNetImageNet264(input_shape=None,
                         weights=None,
                         input_tensor=None,
                         classes=1000,
-                        activation='linear'):
+                        activation='softmax'):
     return DenseNet(input_shape, depth=201, nb_dense_block=4, growth_rate=32, nb_filter=64,
                     nb_layers_per_block=[6, 12, 64, 48], bottleneck=bottleneck, reduction=reduction,
                     dropout_rate=dropout_rate, weight_decay=weight_decay, subsample_initial_block=True,
@@ -656,7 +656,9 @@ def __create_dense_net(nb_classes, img_input, include_top, depth=40, nb_dense_bl
     x = GlobalAveragePooling2D()(x)
 
     if include_top:
-        x = Dense(nb_classes, activation=activation)(x)
+        x = Dense(nb_classes*2, activation=activation)(x)
+
+        x = Dense(nb_classes, activation='linear')(x)
 
     return x
 

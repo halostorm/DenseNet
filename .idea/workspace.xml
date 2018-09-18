@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="433bd00b-4420-43d6-97eb-e89c9c28f58b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/densenet_reg.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zero_reg.py" afterPath="$PROJECT_DIR$/zero_reg.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/densenet_reg.py" afterPath="$PROJECT_DIR$/densenet_reg.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,22 +20,10 @@
       <file leaf-file-name="zero_reg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zero_reg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="109" column="26" lean-forward="true" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
+            <state relative-caret-position="295">
+              <caret line="128" column="55" lean-forward="true" selection-start-line="128" selection-start-column="55" selection-end-line="128" selection-end-column="55" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="densenet.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/densenet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="402" column="41" lean-forward="true" selection-start-line="402" selection-start-column="41" selection-end-line="402" selection-end-column="41" />
-              <folding>
-                <element signature="e#260#297#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,21 +32,11 @@
       <file leaf-file-name="densenet_reg.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/densenet_reg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="547" column="30" lean-forward="true" selection-start-line="547" selection-start-column="30" selection-end-line="547" selection-end-column="30" />
+            <state relative-caret-position="364">
+              <caret line="658" column="57" lean-forward="true" selection-start-line="658" selection-start-column="57" selection-end-line="658" selection-end-column="57" />
               <folding>
                 <element signature="e#260#297#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="training.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/keras/engine/training.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="36" column="8" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -77,6 +54,9 @@
     <findStrings>
       <find>dense</find>
       <find>dense(</find>
+      <find>softmax</find>
+      <find>DenseNet</find>
+      <find>__create_dense_net</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -90,8 +70,8 @@
         <option value="$PROJECT_DIR$/readData.py" />
         <option value="$PROJECT_DIR$/cifar100.py" />
         <option value="$PROJECT_DIR$/zero.py" />
-        <option value="$PROJECT_DIR$/densenet_reg.py" />
         <option value="$PROJECT_DIR$/zero_reg.py" />
+        <option value="$PROJECT_DIR$/densenet_reg.py" />
       </list>
     </option>
   </component>
@@ -529,6 +509,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/densenet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="402" column="41" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="801" selection-end-column="52" />
+          <folding>
+            <element signature="e#260#297#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/keras/engine/training.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -539,18 +529,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/densenet_reg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="547" column="30" lean-forward="true" selection-start-line="547" selection-start-column="30" selection-end-line="547" selection-end-column="30" />
-          <folding>
-            <element signature="e#260#297#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/densenet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="402" column="41" lean-forward="true" selection-start-line="402" selection-start-column="41" selection-end-line="402" selection-end-column="41" />
+        <state relative-caret-position="364">
+          <caret line="658" column="57" lean-forward="true" selection-start-line="658" selection-start-column="57" selection-end-line="658" selection-end-column="57" />
           <folding>
             <element signature="e#260#297#0" expanded="true" />
           </folding>
@@ -559,8 +539,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zero_reg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="109" column="26" lean-forward="true" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
+        <state relative-caret-position="295">
+          <caret line="128" column="55" lean-forward="true" selection-start-line="128" selection-start-column="55" selection-end-line="128" selection-end-column="55" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
