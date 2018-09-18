@@ -79,8 +79,7 @@ def load_data(dir, path):
         image = img_to_array(image)
         # extract the class label from the image path and update the
         # labels list
-        label = []
-        label.append(file[1:31])
+        label = file[1:31]
         label = np.array(label)
         if count < 32000:
             data.append(image)
