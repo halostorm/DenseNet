@@ -20,8 +20,8 @@
       <file leaf-file-name="densenet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/densenet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8917">
-              <caret line="658" column="18" lean-forward="false" selection-start-line="658" selection-start-column="12" selection-end-line="658" selection-end-column="18" />
+            <state relative-caret-position="189">
+              <caret line="424" column="31" lean-forward="false" selection-start-line="424" selection-start-column="24" selection-end-line="424" selection-end-column="31" />
               <folding>
                 <element signature="e#260#297#0" expanded="true" />
               </folding>
@@ -29,21 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cifar100.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cifar100.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="84" column="22" lean-forward="true" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="zero.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zero.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="28" column="16" lean-forward="true" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+            <state relative-caret-position="228">
+              <caret line="107" column="26" lean-forward="true" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -68,6 +58,7 @@
         <option value="$PROJECT_DIR$/densenet.py" />
         <option value="$PROJECT_DIR$/cifar10.py" />
         <option value="$PROJECT_DIR$/readData.py" />
+        <option value="$PROJECT_DIR$/cifar100.py" />
         <option value="$PROJECT_DIR$/zero.py" />
       </list>
     </option>
@@ -337,7 +328,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14551084" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -495,16 +486,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cifar100.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="84" column="22" lean-forward="true" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
+        <state relative-caret-position="152">
+          <caret line="50" column="13" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/densenet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8917">
-          <caret line="658" column="18" lean-forward="false" selection-start-line="658" selection-start-column="12" selection-end-line="658" selection-end-column="18" />
+        <state relative-caret-position="189">
+          <caret line="424" column="31" lean-forward="false" selection-start-line="424" selection-start-column="24" selection-end-line="424" selection-end-column="31" />
           <folding>
             <element signature="e#260#297#0" expanded="true" />
           </folding>
@@ -513,8 +504,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zero.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="28" column="16" lean-forward="true" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+        <state relative-caret-position="228">
+          <caret line="107" column="26" lean-forward="true" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>

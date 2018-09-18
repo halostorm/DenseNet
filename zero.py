@@ -100,9 +100,11 @@ def load_data(dir, path):
 
 
 def train():
-    model = densenet.DenseNet(img_dim, classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
-                              growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate,
-                              bottleneck=bottleneck, reduction=reduction, weights=None)
+    # model = densenet.DenseNet(img_dim, classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
+    #                           growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate,
+    #                           bottleneck=bottleneck, reduction=reduction, weights=None)
+
+    model = densenet.DenseNetImageNet264(input_shape=img_dim,classes = nb_classes)
     print("Model created")
 
     model.summary()
