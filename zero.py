@@ -1,32 +1,48 @@
 from __future__ import print_function
 
-import os.path
+import sys
 
+sys.setrecursionlimit(10000)
+
+import densenet
 import numpy as np
 import sklearn.metrics as metrics
-from keras import losses
 
-from keras.datasets import cifar10
-
+from keras.datasets import cifar100
 from keras.utils import np_utils
-from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
-from keras import backend as K
 from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
-from sklearn.model_selection import train_test_split
+from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, EarlyStopping
+from keras import backend as K
+import os.path
+import time
+import matplotlib.pyplot as plt
+
+import sklearn.metrics as metrics
+
 from keras.preprocessing.image import img_to_array
 import numpy as np
 import random
 import cv2
-import os
-import sys
 
-import densenet
-from densenet_fast import create_dense_net
+batch_size = 32
+nb_classes = 100
+nb_epoch = 15
 
-norm_size = 64
+img_rows, img_cols = 64, 64
+img_channels = 3
+
+img_dim = (img_channels, img_rows, img_cols) if K.image_dim_ordering() == "th" else (img_rows, img_cols, img_channels)
+depth = 40
+nb_dense_block = 3
+growth_rate = 12
+nb_filter = 12
+bottleneck = False
+reduction = 0.0
+dropout_rate = 0.0  # 0.0 for data augmentation
+
 train_file_path = r'../DatasetA_train_20180813/train/'
-com_path = r'../data/com.txt'
+com_path = r'../data/data_train.txt'
 
 
 def load_data(dir, path):
@@ -57,13 +73,14 @@ def load_data(dir, path):
         imagePath = dir + file[0]
         # print(imagePath)
         image = cv2.imread(imagePath)
-        image = cv2.resize(image, (norm_size, norm_size))
+        image = cv2.resize(image, (img_rows, img_cols))
         image = img_to_array(image)
         # extract the class label from the image path and update the
         # labels list
-        label = file[1:31]
+        label = []
+        label.append(file[1])
         label = np.array(label)
-        if count < 30000:
+        if count < 32000:
             data.append(image)
             labels.append(label)
         else:
@@ -83,76 +100,49 @@ def load_data(dir, path):
 
 
 def train():
-    batch_size = 20
-    nb_classes = 10
-    nb_epoch = 30
-
-    img_rows, img_cols = 64, 64
-    img_channels = 3
-
-    img_dim = (img_channels, img_rows, img_cols) if K.image_dim_ordering() == "th" else (
-        img_rows, img_cols, img_channels)
-    depth = 40
-    nb_dense_block = 3
-    growth_rate = 12
-    nb_filter = -1
-    dropout_rate = 0.0  # 0.0 for data augmentation
-
-    model = create_dense_net(img_dim=img_dim, nb_classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
-                             growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate)
+    model = densenet.DenseNet(img_dim, classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
+                              growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate,
+                              bottleneck=bottleneck, reduction=reduction, weights=None)
     print("Model created")
 
     model.summary()
-    optimizer = Adam(lr=1e-3)  # Using Adam instead of SGD to speed up training
-    model.compile(loss=losses.mean_squared_error, optimizer=optimizer, metrics=["accuracy"])
+    optimizer = Adam(lr=1e-4)  # Using Adam instead of SGD to speed up training
+    model.compile(loss='categorical_crossentropy', optimizer=optimizer, metrics=["accuracy"])
     print("Finished compiling")
     print("Building model...")
-
-    # (trainX, trainY), (testX, testY) = cifar10.load_data()
 
     trainX, trainY, testX, testY = load_data(train_file_path, com_path)
 
     print(trainX.shape)
-    # print(trainY.shape)
+    print(trainY.shape)
     print(testX.shape)
-    # print(testY.shape)
+    print(testY.shape)
 
     trainX = trainX.astype('float32')
     testX = testX.astype('float32')
 
-    # trainX = densenet.preprocess_input(trainX)
-    # testX = densenet.preprocess_input(testX)
-
-    # Y_train = np_utils.to_categorical(trainY, nb_classes)
-    # Y_test = np_utils.to_categorical(testY, nb_classes)
+    Y_train = np_utils.to_categorical(trainY, nb_classes)
+    Y_test = np_utils.to_categorical(testY, nb_classes)
 
     generator = ImageDataGenerator(rotation_range=15,
-                                   width_shift_range=5. / img_rows,
-                                   height_shift_range=5. / img_cols,
-                                   horizontal_flip=True)
+                                   width_shift_range=10. / img_rows,
+                                   height_shift_range=10. / img_cols)
 
     generator.fit(trainX, seed=0)
 
-    # Load model
-    weights_file = "weights/DenseNet-40-12-CIFAR10.h5"
-    if os.path.exists(weights_file):
-        # model.load_weights(weights_file, by_name=True)
-        print("Model loaded.")
+    lr_reducer = ReduceLROnPlateau(monitor='val_loss', factor=np.sqrt(0.1),
+                                   cooldown=0, patience=10, min_lr=0.5e-6)
+    early_stopper = EarlyStopping(monitor='val_acc', min_delta=0.0001, patience=20)
+    model_checkpoint = ModelCheckpoint("Zero.h5", monitor="val_acc", save_best_only=True,
+                                       save_weights_only=True)
 
-    out_dir = "weights/"
+    callbacks = [lr_reducer, early_stopper, model_checkpoint]
 
-    lr_reducer = ReduceLROnPlateau(monitor='val_acc', factor=np.sqrt(0.1),
-                                   cooldown=0, patience=5, min_lr=1e-5)
-    model_checkpoint = ModelCheckpoint(weights_file, monitor="val_acc", save_best_only=True,
-                                       save_weights_only=True, verbose=1)
-
-    callbacks = [lr_reducer, model_checkpoint]
-
-    model.fit_generator(generator.flow(trainX, None, batch_size=batch_size),
-                        steps_per_epoch=len(trainX) // batch_size, epochs=nb_epoch,
-                        callbacks=callbacks,
-                        validation_data=(testX, None),
-                        validation_steps=testX.shape[0] // batch_size, verbose=1)
+    history = model.fit_generator(generator.flow(trainX, Y_train, batch_size=batch_size), samples_per_epoch=len(trainX),
+                                  nb_epoch=nb_epoch,
+                                  callbacks=callbacks,
+                                  validation_data=(testX, Y_test),
+                                  nb_val_samples=testX.shape[0], verbose=1)
 
     yPreds = model.predict(testX)
     yPred = np.argmax(yPreds, axis=1)
@@ -163,6 +153,8 @@ def train():
     print("Accuracy : ", accuracy)
     print("Error : ", error)
 
+    return history
+
 
 if __name__ == '__main__':
-    train()
+    history = train()
