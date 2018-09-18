@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="433bd00b-4420-43d6-97eb-e89c9c28f58b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/zero_reg.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/zero.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/densenet_reg.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zero_reg.py" afterPath="$PROJECT_DIR$/zero_reg.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,10 +21,34 @@
       <file leaf-file-name="zero_reg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zero_reg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+            <state relative-caret-position="297">
+              <caret line="109" column="26" lean-forward="true" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="densenet.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/densenet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="402" column="41" lean-forward="true" selection-start-line="402" selection-start-column="41" selection-end-line="402" selection-end-column="41" />
+              <folding>
+                <element signature="e#260#297#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="densenet_reg.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/densenet_reg.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="276">
+              <caret line="547" column="30" lean-forward="true" selection-start-line="547" selection-start-column="30" selection-end-line="547" selection-end-column="30" />
+              <folding>
+                <element signature="e#260#297#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,6 +90,7 @@
         <option value="$PROJECT_DIR$/readData.py" />
         <option value="$PROJECT_DIR$/cifar100.py" />
         <option value="$PROJECT_DIR$/zero.py" />
+        <option value="$PROJECT_DIR$/densenet_reg.py" />
         <option value="$PROJECT_DIR$/zero_reg.py" />
       </list>
     </option>
@@ -497,16 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/densenet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="424" column="31" lean-forward="false" selection-start-line="424" selection-start-column="24" selection-end-line="424" selection-end-column="31" />
-          <folding>
-            <element signature="e#260#297#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/readData.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-659">
@@ -523,10 +537,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/densenet_reg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="547" column="30" lean-forward="true" selection-start-line="547" selection-start-column="30" selection-end-line="547" selection-end-column="30" />
+          <folding>
+            <element signature="e#260#297#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/densenet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="402" column="41" lean-forward="true" selection-start-line="402" selection-start-column="41" selection-end-line="402" selection-end-column="41" />
+          <folding>
+            <element signature="e#260#297#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/zero_reg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="49" column="25" lean-forward="true" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="25" />
+        <state relative-caret-position="297">
+          <caret line="109" column="26" lean-forward="true" selection-start-line="109" selection-start-column="26" selection-end-line="109" selection-end-column="26" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>

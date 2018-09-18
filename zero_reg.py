@@ -6,7 +6,7 @@ from keras import losses
 
 sys.setrecursionlimit(10000)
 
-import densenet
+import densenet_reg
 import numpy as np
 import sklearn.metrics as metrics
 
@@ -106,7 +106,7 @@ def train():
     #                           growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate,
     #                           bottleneck=bottleneck, reduction=reduction, weights=None)
 
-    model = densenet.DenseNetImageNet264(input_shape=img_dim, classes=nb_classes)
+    model = densenet_reg.DenseNetImageNet264(input_shape=img_dim, classes=nb_classes)
     print("Model created")
 
     model.summary()
