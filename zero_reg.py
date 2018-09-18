@@ -125,8 +125,10 @@ def train():
     trainX = trainX.astype('float32')
     testX = testX.astype('float32')
 
-    Y_train = np_utils.to_categorical(trainY, nb_classes)
-    Y_test = np_utils.to_categorical(testY, nb_classes)
+    # Y_train = np_utils.to_categorical(trainY, nb_classes)
+    Y_train = trainY
+    # Y_test = np_utils.to_categorical(testY, nb_classes)
+    Y_test = testY
 
     generator = ImageDataGenerator(rotation_range=15,
                                    width_shift_range=10. / img_rows,
