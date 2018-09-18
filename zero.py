@@ -26,7 +26,7 @@ import random
 import cv2
 
 batch_size = 32
-nb_classes = 100
+nb_classes = 230
 nb_epoch = 15
 
 img_rows, img_cols = 64, 64
