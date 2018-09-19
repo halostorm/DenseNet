@@ -101,9 +101,6 @@ def test():
 
     testX = testX.astype('float32')
 
-    # Y_test = np_utils.to_categorical(testY, nb_classes)
-    Y_test = testY
-
     weights_file = r'Zero_DenseNet_Reg.h5'
     if os.path.exists(weights_file):
         model.load_weights(weights_file, by_name=True)
@@ -112,7 +109,10 @@ def test():
         yPred = model.predict(testX)
         yTrue = testY
 
-        loss = np.mean(np.square(yPred - yTrue))
+        print(yPred.shape)
+        print(yTrue.shape)
+
+        loss = ((yPred - yTrue)**2).mean()
 
         print("test loss:\t" + str(loss))
     else:
