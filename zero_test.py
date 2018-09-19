@@ -115,9 +115,10 @@ def test():
         loss = 0
 
         for i in range(len(yPred)):
-            loss += K.mean(K.square(yPred[i] - yTrue[i]))
+            for j in range(len(yPred[i])):
+                loss += np.abs(yPred[i][j]-yTrue[i][j])
 
-        print("test loss:\t" + str(loss/len(yPred)))
+        print("test loss:\t" + str(loss/len(yPred)/30))
     else:
         print("No model")
 
