@@ -62,6 +62,10 @@ generator.fit(trainX, seed=0)
 # Load model
 # model.load_weights("weights/DenseNet-BC-100-12-CIFAR100.h5")
 # print("Model loaded.")
+weights_file = r'Zero_DenseNet.h5'
+if np.os.path.exists(weights_file):
+    model.load_weights(weights_file, by_name=True)
+    print("Model loaded.")
 
 lr_reducer      = ReduceLROnPlateau(monitor='val_loss', factor=np.sqrt(0.1),
                                     cooldown=0, patience=10, min_lr=0.5e-6)

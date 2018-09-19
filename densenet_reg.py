@@ -655,6 +655,8 @@ def __create_dense_net(nb_classes, img_input, include_top, depth=40, nb_dense_bl
     x = Activation('relu')(x)
     x = GlobalAveragePooling2D()(x)
 
+    print(x.shape)
+
     if include_top:
         x = Dense(nb_classes*2, activation=activation)(x)
 

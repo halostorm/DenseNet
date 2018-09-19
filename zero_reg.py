@@ -39,7 +39,7 @@ depth = 40
 nb_dense_block = 3
 growth_rate = 12
 nb_filter = 12
-bottleneck = False
+bottleneck = True
 reduction = 0.0
 dropout_rate = 0.0  # 0.0 for data augmentation
 
@@ -92,6 +92,7 @@ def load_data(dir, path):
     # scale the raw pixel intensities to the range [0, 1]
     data = np.array(data, dtype="float") / 255.0
     data1 = np.array(data1, dtype="float") / 255.0
+
     labels = np.array(labels)
     labels1 = np.array(labels1)
 
@@ -135,10 +136,16 @@ def train():
 
     generator.fit(trainX, seed=0)
 
+    weights_file = r'Zero_DenseNet_Reg.h5'
+    if np.os.path.exists(weights_file):
+        model.load_weights(weights_file, by_name=True)
+        print("Model loaded.")
+
     lr_reducer = ReduceLROnPlateau(monitor='val_loss', factor=np.sqrt(0.1),
                                    cooldown=0, patience=10, min_lr=0.5e-6)
+
     early_stopper = EarlyStopping(monitor='val_acc', min_delta=0.0001, patience=20)
-    model_checkpoint = ModelCheckpoint("Zero.h5", monitor="val_acc", save_best_only=True,
+    model_checkpoint = ModelCheckpoint(weights_file, monitor="val_acc", save_best_only=True,
                                        save_weights_only=True)
 
     callbacks = [lr_reducer, early_stopper, model_checkpoint]
@@ -149,13 +156,20 @@ def train():
                                   validation_data=(testX, Y_test),
                                   nb_val_samples=testX.shape[0], verbose=1)
 
+    model_id = np.int64(time.strftime('%Y%m%d%H%M', time.localtime(time.time())))
+    model.save('Zero_DenseNet_Reg' + str(model_id) + '.h5')
+
     yPred = model.predict(testX)
     yTrue = testY
 
-    accuracy = metrics.accuracy_score(yTrue, yPred) * 100
-    error = 100 - accuracy
-    print("Accuracy : ", accuracy)
-    print("Error : ", error)
+    loss = np.mean(np.square(yPred-yTrue))
+
+    print("test loss:\t"+str(loss))
+
+    # accuracy = metrics.accuracy_score(yTrue, yPred) * 100
+    # error = 100 - accuracy
+    # print("Accuracy : ", accuracy)
+    # print("Error : ", error)
 
     return history
 
