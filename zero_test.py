@@ -112,12 +112,7 @@ def test():
         print(yPred.shape)
         print(yTrue.shape)
 
-        result = []
-
-        for i in range(len(yPred)):
-            result.append(abs(yPred[i]-yTrue[i]))
-
-        loss = np.array(result).mean()
+        loss = K.mean(K.square(yPred - yTrue), axis=-1)
 
         print("test loss:\t" + str(loss))
     else:
