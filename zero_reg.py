@@ -141,9 +141,9 @@ def train():
         model.load_weights(weights_file, by_name=True)
         print("Model loaded.")
 
-    lr_reducer = ReduceLROnPlateau(monitor='val_acc', factor=np.sqrt(0.1),
+    lr_reducer = ReduceLROnPlateau(monitor='val_loss', factor=np.sqrt(0.1),
                                    cooldown=0, patience=5, min_lr=1e-5)
-    model_checkpoint = ModelCheckpoint(weights_file, monitor="val_acc", save_best_only=True,
+    model_checkpoint = ModelCheckpoint(weights_file, monitor="val_loss", save_best_only=True,
                                        save_weights_only=True, verbose=1)
 
     callbacks = [lr_reducer, model_checkpoint]
