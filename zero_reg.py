@@ -141,14 +141,12 @@ def train():
         model.load_weights(weights_file, by_name=True)
         print("Model loaded.")
 
-    lr_reducer = ReduceLROnPlateau(monitor='val_loss', factor=np.sqrt(0.1),
-                                   cooldown=0, patience=10, min_lr=0.5e-6)
-
-    early_stopper = EarlyStopping(monitor='val_acc', min_delta=0.0001, patience=20)
+    lr_reducer = ReduceLROnPlateau(monitor='val_acc', factor=np.sqrt(0.1),
+                                   cooldown=0, patience=5, min_lr=1e-5)
     model_checkpoint = ModelCheckpoint(weights_file, monitor="val_acc", save_best_only=True,
-                                       save_weights_only=True)
+                                       save_weights_only=True, verbose=1)
 
-    callbacks = [lr_reducer, early_stopper, model_checkpoint]
+    callbacks = [lr_reducer, model_checkpoint]
 
     history = model.fit_generator(generator.flow(trainX, Y_train, batch_size=batch_size), samples_per_epoch=len(trainX),
                                   nb_epoch=nb_epoch,
