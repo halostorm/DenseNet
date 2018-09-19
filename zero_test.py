@@ -103,7 +103,7 @@ def test():
 
     testY = testY.astype('float32')
 
-    weights_file = r'Zero_DenseNet_Reg.h5'
+    weights_file = r'Zero_DenseNet_Reg201809190559.h5'
     if os.path.exists(weights_file):
         model.load_weights(weights_file, by_name=True)
         print("Model loaded.")
