@@ -112,9 +112,12 @@ def test():
         print(yPred.shape)
         print(yTrue.shape)
 
-        loss = K.mean(K.square(yPred - yTrue), axis=-1)
+        loss = 0
 
-        print("test loss:\t" + str(loss))
+        for i in range(len(yPred)):
+            loss += K.mean(K.square(yPred[i] - yTrue[i]))
+
+        print("test loss:\t" + str(loss/len(yPred)))
     else:
         print("No model")
 
