@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="433bd00b-4420-43d6-97eb-e89c9c28f58b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cifar100.py" afterPath="$PROJECT_DIR$/cifar100.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/densenet_reg.py" afterPath="$PROJECT_DIR$/densenet_reg.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zero_reg.py" afterPath="$PROJECT_DIR$/zero_reg.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,8 +20,8 @@
       <file leaf-file-name="zero_reg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/zero_reg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+            <state relative-caret-position="231">
+              <caret line="137" column="0" lean-forward="true" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -543,8 +541,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/zero_reg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="165" column="0" lean-forward="true" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
+        <state relative-caret-position="231">
+          <caret line="137" column="0" lean-forward="true" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>

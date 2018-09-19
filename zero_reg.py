@@ -16,7 +16,7 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
 from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau, EarlyStopping
 from keras import backend as K
-import os.path
+import os
 import time
 import matplotlib.pyplot as plt
 
@@ -137,7 +137,7 @@ def train():
     generator.fit(trainX, seed=0)
 
     weights_file = r'Zero_DenseNet_Reg.h5'
-    if np.os.path.exists(weights_file):
+    if os.path.exists(weights_file):
         model.load_weights(weights_file, by_name=True)
         print("Model loaded.")
 
