@@ -102,12 +102,12 @@ def load_data(dir, path):
 
 
 def train():
-    # model = densenet.DenseNet(img_dim, classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
-    #                           growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate,
-    #                           bottleneck=bottleneck, reduction=reduction, weights=None)
+    model = densenet_reg.DenseNet(img_dim, classes=nb_classes, depth=depth, nb_dense_block=nb_dense_block,
+                              growth_rate=growth_rate, nb_filter=nb_filter, dropout_rate=dropout_rate,
+                              bottleneck=bottleneck, reduction=reduction, weights=None)
 
-    model = densenet_reg.DenseNetImageNet264(input_shape=img_dim, classes=nb_classes)
-    print("Model created")
+    # model = densenet_reg.DenseNetImageNet264(input_shape=img_dim, classes=nb_classes)
+    # print("Model created")
 
     model.summary()
     optimizer = Adam(lr=1e-4)  # Using Adam instead of SGD to speed up training
@@ -136,7 +136,7 @@ def train():
 
     generator.fit(trainX, seed=0)
 
-    weights_file = r'Zero_DenseNet_Reg.h5'
+    weights_file = r'../dataB/Zero_DenseNet_Reg.h5'
     if os.path.exists(weights_file):
         model.load_weights(weights_file, by_name=True)
         print("Model loaded.")
